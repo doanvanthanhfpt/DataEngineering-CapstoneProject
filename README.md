@@ -25,9 +25,6 @@ In this project, some source datas will be use to do data modeling:
 
 ## Table of contents[![](./docs/img/pin.svg)](#table-of-contents)
 1. [Step 1: Scope the Project and Gather Data](#step1)
-   
-   [Data Volume Assessment](#data_volume_assessment)
-   
    [Data Volume Assessment](#data_volume_assessment)
 3. [Step 2: Explore and Assess the Data](#step2)
 4. [Step 3: Define the Data Model](#step3)
