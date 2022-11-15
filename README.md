@@ -25,21 +25,20 @@ In this project, some source datas will be use to do data modeling:
 
 ## Table of contents[![](./docs/img/pin.svg)](#table-of-contents)
 1. [Step 1: Scope the Project and Gather Data](#step1)
-2. [Step 2: Explore and Assess the Data](#step2)
-3. [Step 3: Define the Data Model](#step3)
-4. [Step 4: Run Pipelines to Model the Data](#step4)
-5. [Step 5: Complete Project Write Up](#step5)
-6. [Appreciated](#thanks)
+   - [Data Volume Assessment][![](./docs/img/pin.svg)](#data_volume_assessment)<br>
+   - [Data Attributes Assessment][![](./docs/img/pin.svg)](#data_attributes_assessment)<br>
+   - [Scope the Project][![](./docs/img/pin.svg)](#scope_the_project)<br>
+3. [Step 2: Explore and Assess the Data](#step2)
+4. [Step 3: Define the Data Model](#step3)
+5. [Step 4: Run Pipelines to Model the Data](#step4)
+6. [Step 5: Complete Project Write Up](#step5)
+7. [Appreciated](#thanks)
 
-   [Data Volume Assessment]<br>
-   [Data Attributions Assessment]<br>
-   [Scope the Project]<br>
 ---
 
 ## Step 1: Scope the Project and Gather Data[![](./docs/img/pin.svg)](#step1)
 
 #### Data Assessment[![](./docs/img/pin.svg)](#data_volume_assessment)
-
 * Create confg file [_etl.cfg_](./etl.cfg) to set basic data path configurations:
    ```
    [DIR]
@@ -119,8 +118,7 @@ In this project, some source datas will be use to do data modeling:
    List of chunks
    Amount of (chunks)
    ```
-
-* Attribution asessments on splited datasets:<br>
+* Attributes asessments on splited datasets:(#data_attributes_assessment)<br>
 
    To get schema and column names with corresponding data type of I94 Immigration Data, run [_i94_immigration_data_gathering.py_](./i94_immigration_data_gathering.py) at terminal or Jupiter Note Book.
    ```
@@ -146,15 +144,12 @@ In this project, some source datas will be use to do data modeling:
    schema included column names with corresponding data type
    sample records
    ```
-
-### Scope the Project[![](./docs/img/pin.svg)](#scope_the_project)
-
-* Scope datasources
-   
-   - I94 Immigration Data.
-   - World Temperature Data.
-   - U.S. City Demographic Data.
-   - Airport Code Table.
+* Scope the Project[![](./docs/img/pin.svg)](#scope_the_project)<br>
+   - Scope datasources
+      * I94 Immigration Data.
+      * World Temperature Data.
+      * U.S. City Demographic Data.
+      * Airport Code Table.
    
 * Analysis target
 
@@ -169,7 +164,6 @@ In this project, some source datas will be use to do data modeling:
 ---
 
 ## Step 3: Define the Data Model[![](./docs/img/pin.svg)](#composition)
-
 * Conceptual data modeling
 * Data pipeline
 
