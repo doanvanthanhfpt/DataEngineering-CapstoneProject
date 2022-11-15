@@ -67,24 +67,35 @@ AIR_PORT = ./airport-codes_csv.csv
 I94_IMMI_SPLITED_DIR = ./storage/.sas7bdat
 WORLD_TEMPE_SPLITED_DIR = ./storage/.csv
 ```
-> 💡 By default, the `router.init` and `log.init` files are located in the `config` subfolder of binaries.<br>
-> 💡 To enable all logs of all applications, use `scope.*  = DEBUG | SCOPE ;` .<br>
-> 💡 In the current version the logging is possible only in file.
+> 💡 The config file can be update up to steps.<br>
+> 💡 Use comment symbols: "#" or ";".<br>
 
 #### Data Attributions Assessment[![](./docs/img/pin.svg)](#data_attributions_assessment)
 
-Configure [_etl.cfg_](./etl.cfg) to set scopes, log priorities and log file name:
+To get date size and number of records of I94 Immigration Data, run [_i94_immigration_data_gathering.py_](./i94_immigration_data_gathering.py) at terminal or Jupiter Note Book.
 ```
-log.file        = %home%/logs/%appname%_%time%.log # create logs in 'log' subfolder of user home 
-scope.mcrouter.*= NOTSET ;                         # disable logs for mcrouter.
-
-scope.my_app.*                   = DEBUG | SCOPE ; # enable all logs of my_app
-scope.my_app.ignore_this_scope   = NOTSET ;        # disable logs of certain scopes in my_app
-scope.my_app.ignore_this_group_* = NOTSET ;        # disable logs of certain scope group in my_app
+I94 Immigration Data
+data size here
+number of rows here
 ```
-> 💡 By default, the `router.init` and `log.init` files are located in the `config` subfolder of binaries.<br>
-> 💡 To enable all logs of all applications, use `scope.*  = DEBUG | SCOPE ;` .<br>
-> 💡 In the current version the logging is possible only in file.
+To get date size and number of records of World Temperature Data, run  [_world_temperature_data_gathering.py_](./world_temperature_data_gathering.py) at terminal or Jupiter Note Book.
+```
+World Temperature Data
+data size here
+number of rows here
+```
+To get date size and number of records of U.S. City Demographic Data, run  [_us_city_demographic_data_gathering.py_](./us_city_demographic_data_gathering.py) at terminal or Jupiter Note Book.
+```
+U.S. City Demographic Data
+data size here
+number of rows here
+```
+To get date size and number of records of Airport Code Table, run  [_us_airport_code_table_gathering.py_](./us_airport_code_table_gathering.py) at terminal or Jupiter Note Book.
+```
+Airport Code Table
+data size here
+number of rows here
+```
 
 ### Scope the Project[![](./docs/img/pin.svg)](#scope_the_project)
 
