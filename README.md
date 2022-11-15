@@ -50,7 +50,7 @@ In this project, some source datas will be use to do data modeling:
 
 ## Step 1: Scope the Project and Gather Data[![](./docs/img/pin.svg)](#step1)
 
-#### Data Volume Assessment(#data_volume_assessment)
+#### Data Volume Assessment[![](./docs/img/pin.svg)](#data_volume_assessment)
 
 * Create confg file [_etl.cfg_](./etl.cfg) to set basic data path configurations:
 ```
@@ -72,7 +72,7 @@ WORLD_TEMPE_SPLITED_DIR = ./storage/.csv
 > 💡 To enable all logs of all applications, use `scope.*  = DEBUG | SCOPE ;` .<br>
 > 💡 In the current version the logging is possible only in file.
 
-#### Data Attributions Assessment(#data_attributions_assessment)
+#### Data Attributions Assessment[![](./docs/img/pin.svg)](#data_attributions_assessment)
 
 Configure [_etl.cfg_](./etl.cfg) to set scopes, log priorities and log file name:
 ```
@@ -87,7 +87,7 @@ scope.my_app.ignore_this_group_* = NOTSET ;        # disable logs of certain sco
 > 💡 To enable all logs of all applications, use `scope.*  = DEBUG | SCOPE ;` .<br>
 > 💡 In the current version the logging is possible only in file.
 
-### Scope the Project(#scope_the_project)
+### Scope the Project[![](./docs/img/pin.svg)](#scope_the_project)
 
 Traditionally, devices are connected to clients to stream data to the cloud or fog servers for further processing.
 <br><br><a href="/docs/img/mist-network.png"><img src="/docs/img/mist-network.png" alt="IoT-to-Cloud (Nebula) network" style="width:70%;height:70%"/></a><br><br>
