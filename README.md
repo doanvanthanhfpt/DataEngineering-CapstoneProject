@@ -70,7 +70,7 @@ WORLD_TEMPE_SPLITED_DIR = ./storage/.csv
 > 💡 The config file can be update up to steps.<br>
 > 💡 Use comment symbols: "#" or ";".<br>
 
-* Volume asessments:
+* Volume asessments:<br>
 To get date size, amount of records and column names with corresponding data type of I94 Immigration Data, run [_i94_immigration_data_gathering.py_](./i94_immigration_data_gathering.py) at terminal or Jupiter Note Book.
 ```
 I94 Immigration Data
