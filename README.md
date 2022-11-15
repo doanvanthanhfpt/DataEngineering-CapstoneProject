@@ -49,7 +49,7 @@ In this project, some source datas will be use to do data modeling:
 
 ## Step 1: Scope the Project and Gather Data[![](./docs/img/pin.svg)](#step1)
 
-#### Data Volume Assessment[![](./docs/img/pin.svg)](#data_volume_assessment)
+#### Data Assessment[![](./docs/img/pin.svg)](#data_volume_assessment)
 
 * Create confg file [_etl.cfg_](./etl.cfg) to set basic data path configurations:
 ```
@@ -70,31 +70,34 @@ WORLD_TEMPE_SPLITED_DIR = ./storage/.csv
 > 💡 The config file can be update up to steps.<br>
 > 💡 Use comment symbols: "#" or ";".<br>
 
-#### Data Attributions Assessment[![](./docs/img/pin.svg)](#data_attributions_assessment)
-
-To get date size and number of records of I94 Immigration Data, run [_i94_immigration_data_gathering.py_](./i94_immigration_data_gathering.py) at terminal or Jupiter Note Book.
+* Volume and attribution asessments:
+To get date size, amount of records and column names with corresponding data type of I94 Immigration Data, run [_i94_immigration_data_gathering.py_](./i94_immigration_data_gathering.py) at terminal or Jupiter Note Book.
 ```
 I94 Immigration Data
 data size here
 number of rows here
+column names with corresponding data type
 ```
-To get date size and number of records of World Temperature Data, run  [_world_temperature_data_gathering.py_](./world_temperature_data_gathering.py) at terminal or Jupiter Note Book.
+To get date size, amount of records and column names with corresponding data type of World Temperature Data, run  [_world_temperature_data_gathering.py_](./world_temperature_data_gathering.py) at terminal or Jupiter Note Book.
 ```
 World Temperature Data
 data size here
 number of rows here
+column names with corresponding data type
 ```
-To get date size and number of records of U.S. City Demographic Data, run  [_us_city_demographic_data_gathering.py_](./us_city_demographic_data_gathering.py) at terminal or Jupiter Note Book.
+To get date size, amount of records and column names with corresponding data type of U.S. City Demographic Data, run  [_us_city_demographic_data_gathering.py_](./us_city_demographic_data_gathering.py) at terminal or Jupiter Note Book.
 ```
 U.S. City Demographic Data
 data size here
 number of rows here
+column names with corresponding data type
 ```
-To get date size and number of records of Airport Code Table, run  [_us_airport_code_table_gathering.py_](./us_airport_code_table_gathering.py) at terminal or Jupiter Note Book.
+To get date size, amount of records and column names with corresponding data type of Airport Code Table, run  [_us_airport_code_table_gathering.py_](./us_airport_code_table_gathering.py) at terminal or Jupiter Note Book.
 ```
 Airport Code Table
 data size here
 number of rows here
+column names with corresponding data type
 ```
 
 ### Scope the Project[![](./docs/img/pin.svg)](#scope_the_project)
