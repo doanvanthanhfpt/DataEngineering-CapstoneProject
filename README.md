@@ -102,61 +102,61 @@ WORLD_TEMPE_SPLITED_DIR = ./storage/.csv
 
 * Splited data to avoid system stress and saving time for results:<br>
 
-To split I94 Immigration Data, run [_i94_immigration_data_gathering.py_](./i94_immigration_data_gathering.py) at terminal or Jupiter Note Book.
-```
-I94 Immigration Data
-Path to splited files (chunks)
-List of chunks
-Amount of (chunks)
-```
-To split World Temperature Data, run  [_world_temperature_data_gathering.py_](./world_temperature_data_gathering.py) at terminal or Jupiter Note Book.
-```
-World Temperature Data
-Path to splited files (chunks)
-List of chunks
-Amount of (chunks)
-```
-To split U.S. City Demographic Data, run  [_us_city_demographic_data_gathering.py_](./us_city_demographic_data_gathering.py) at terminal or Jupiter Note Book.
-```
-U.S. City Demographic Data
-Path to splited files (chunks)
-List of chunks
-Amount of (chunks)
-```
-To split Airport Code Table, run  [_us_airport_code_table_gathering.py_](./us_airport_code_table_gathering.py) at terminal or Jupiter Note Book.
-```
-Airport Code Table
-Path to splited files (chunks)
-List of chunks
-Amount of (chunks)
-```
+   To split I94 Immigration Data, run [_i94_immigration_data_gathering.py_](./i94_immigration_data_gathering.py) at terminal or Jupiter Note Book.
+   ```
+   I94 Immigration Data
+   Path to splited files (chunks)
+   List of chunks
+   Amount of (chunks)
+   ```
+   To split World Temperature Data, run  [_world_temperature_data_gathering.py_](./world_temperature_data_gathering.py) at terminal or Jupiter Note Book.
+   ```
+   World Temperature Data
+   Path to splited files (chunks)
+   List of chunks
+   Amount of (chunks)
+   ```
+   To split U.S. City Demographic Data, run  [_us_city_demographic_data_gathering.py_](./us_city_demographic_data_gathering.py) at terminal or Jupiter Note Book.
+   ```
+   U.S. City Demographic Data
+   Path to splited files (chunks)
+   List of chunks
+   Amount of (chunks)
+   ```
+   To split Airport Code Table, run  [_us_airport_code_table_gathering.py_](./us_airport_code_table_gathering.py) at terminal or Jupiter Note Book.
+   ```
+   Airport Code Table
+   Path to splited files (chunks)
+   List of chunks
+   Amount of (chunks)
+   ```
 
 * Attribution asessments on splited datasets:<br>
 
-To get schema and column names with corresponding data type of I94 Immigration Data, run [_i94_immigration_data_gathering.py_](./i94_immigration_data_gathering.py) at terminal or Jupiter Note Book.
-```
-I94 Immigration Data
-schema included column names with corresponding data type
-sample records
-```
-To get schema and column names with corresponding data type of World Temperature Data, run  [_world_temperature_data_gathering.py_](./world_temperature_data_gathering.py) at terminal or Jupiter Note Book.
-```
-World Temperature Data
-schema included column names with corresponding data type
-sample records
-```
-To get schema and column names with corresponding data type of U.S. City Demographic Data, run  [_us_city_demographic_data_gathering.py_](./us_city_demographic_data_gathering.py) at terminal or Jupiter Note Book.
-```
-U.S. City Demographic Data
-schema included column names with corresponding data type
-sample records
-```
-To get schema and column names with corresponding data type of Airport Code Table, run  [_us_airport_code_table_gathering.py_](./us_airport_code_table_gathering.py) at terminal or Jupiter Note Book.
-```
-Airport Code Table
-schema included column names with corresponding data type
-sample records
-```
+   To get schema and column names with corresponding data type of I94 Immigration Data, run [_i94_immigration_data_gathering.py_](./i94_immigration_data_gathering.py) at terminal or Jupiter Note Book.
+   ```
+   I94 Immigration Data
+   schema included column names with corresponding data type
+   sample records
+   ```
+   To get schema and column names with corresponding data type of World Temperature Data, run  [_world_temperature_data_gathering.py_](./world_temperature_data_gathering.py) at terminal or Jupiter Note Book.
+   ```
+   World Temperature Data
+   schema included column names with corresponding data type
+   sample records
+   ```
+   To get schema and column names with corresponding data type of U.S. City Demographic Data, run  [_us_city_demographic_data_gathering.py_](./us_city_demographic_data_gathering.py) at terminal or Jupiter Note Book.
+   ```
+   U.S. City Demographic Data
+   schema included column names with corresponding data type
+   sample records
+   ```
+   To get schema and column names with corresponding data type of Airport Code Table, run  [_us_airport_code_table_gathering.py_](./us_airport_code_table_gathering.py) at terminal or Jupiter Note Book.
+   ```
+   Airport Code Table
+   schema included column names with corresponding data type
+   sample records
+   ```
 
 ### Scope the Project[![](./docs/img/pin.svg)](#scope_the_project)
 
