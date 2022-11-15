@@ -78,29 +78,29 @@ WORLD_TEMPE_SPLITED_DIR = ./storage/.csv
       number of rows here
       column names with corresponding data type
       ```
-To get date size, amount of records and column names with corresponding data type of World Temperature Data, run  [_world_temperature_data_gathering.py_](./world_temperature_data_gathering.py) at terminal or Jupiter Note Book.<br>
-```
-World Temperature Data
-data size here
-number of rows here
-column names with corresponding data type
-```
-To get date size, amount of records and column names with corresponding data type of U.S. City Demographic Data, run  [_us_city_demographic_data_gathering.py_](./us_city_demographic_data_gathering.py) at terminal or Jupiter Note Book.
-```
-U.S. City Demographic Data
-data size here
-number of rows here
-column names with corresponding data type
-```
-To get date size, amount of records and column names with corresponding data type of Airport Code Table, run  [_us_airport_code_table_gathering.py_](./us_airport_code_table_gathering.py) at terminal or Jupiter Note Book.
-```
-Airport Code Table
-data size here
-number of rows here
-column names with corresponding data type</br>
-```
+   - To get date size, amount of records and column names with corresponding data type of World Temperature Data, run  [_world_temperature_data_gathering.py_](./world_temperature_data_gathering.py) at terminal or Jupiter Note Book.<br>
+   ```
+   World Temperature Data
+   data size here
+   number of rows here
+   column names with corresponding data type
+   ```
+   - To get date size, amount of records and column names with corresponding data type of U.S. City Demographic Data, run  [_us_city_demographic_data_gathering.py_](./us_city_demographic_data_gathering.py) at terminal or Jupiter Note Book.
+   ```
+   U.S. City Demographic Data
+   data size here
+   number of rows here
+   column names with corresponding data type
+   ```
+   - To get date size, amount of records and column names with corresponding data type of Airport Code Table, run  [_us_airport_code_table_gathering.py_](./us_airport_code_table_gathering.py) at terminal or Jupiter Note Book.
+   ```
+   Airport Code Table
+   data size here
+   number of rows here
+   column names with corresponding data type</br>
+   ```
 
-* Splited data to avoid system stress and saving time for results:
+* Splited data to avoid system stress and saving time for results:<br>
 To split I94 Immigration Data, run [_i94_immigration_data_gathering.py_](./i94_immigration_data_gathering.py) at terminal or Jupiter Note Book.
 ```
 I94 Immigration Data
@@ -130,7 +130,7 @@ List of chunks
 Amount of (chunks)
 ```
 
-* Attribution asessments on splited datasets:
+* Attribution asessments on splited datasets:<br>
 To get schema and column names with corresponding data type of I94 Immigration Data, run [_i94_immigration_data_gathering.py_](./i94_immigration_data_gathering.py) at terminal or Jupiter Note Book.
 ```
 I94 Immigration Data
