@@ -161,34 +161,28 @@ In this project, some source datas will be use to do data modeling:
 ### Scope the Project[![](./docs/img/pin.svg)](#scope_the_project)
 
 * Scope datasources
-
+   
+   I94 Immigration Data
+   World Temperature Data
+   U.S. City Demographic Data
+   Airport Code Table
+   
 * Analysis target
 
 ---
 
 ## Step 2: Explore and Assess the Data[![](./docs/img/pin.svg)](#step2)
 
-When we were designing AREG SDK, the guiding principle was to provide a homogeneous solution for multithreading, multiprocessing and internet communication wrapped in services appropriately having _Local_, _Public_ and _Internet_ categories. These services are neither processes nor tasks managed by the operating system, they are software components with a predefined interface, in which methods are invoked remotely.
-<br><a href="docs/img/areg-services.png"><img src="docs/img/areg-services.png" alt="AREG SDK distributed services" style="width:70%;height:70%"/></a><br>
-> 💡 In current version, the AREG engine handles multithreading (_Local_) and multiprocessing (_Public_) communication. 
+* Data quality validation issues
 
-The AREG engine forms a fault-tolerant system, automatically discovers services, automates communication, simplifies distributed programming, and helps developers to focus on application business logic as if they would program a single process application with one thread where methods of objects are event-driven. The engine guarantees that:
-* The crash of one application does not cause the crash of the system.
-* The service clients are automatically notified about service availability status.
-* The client requests are automatically invoked to run on the service component.
-* The service responses are automatically invoked on the exact client, and they are not mixed or missed.
-* The subscriptions on data, responses and broadcasts are automatically invoked on the client when service triggers a call.
+* Clean data and staging
 
 ---
 
 ## Step 3: Define the Data Model[![](./docs/img/pin.svg)](#composition)
 
-AREG SDK consists of:
-1. [Multicast router (_mcrouter_)](./framework/mcrouter/) to use for IPC. It runs either as a service managed by the OS or as a console application.
-2. [AREG framework (or engine)](./framework/areg/) is a library (shared or static) linked in every application.
-3. [Code generator tool](./tools/) to create client and server base objects from a service prototype document.
-
-The framework contains a dynamic and configurable logging service. More tools and features are planned for future releases.
+* Conceptual data modeling
+* Data pipeline
 
 ---
 
