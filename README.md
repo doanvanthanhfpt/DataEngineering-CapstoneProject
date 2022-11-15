@@ -48,7 +48,7 @@ In this project, some source datas will be use to do data modeling:
 
 #### Data Volume Assessment(#data_volume_assessment)
 
-* Create confg file [_etl.cfg_](./framework/areg/resources/log.init) to set basic configuration:
+* Create confg file [_etl.cfg_](./etl.cfg) to set basic data path configurations:
 ```
 [DIR]
 INPUT_DIR = .
@@ -70,7 +70,7 @@ WORLD_TEMPE_SPLITED_DIR = ./storage/.csv
 
 #### Data Attributions Assessment(#data_attributions_assessment)
 
-Configure [_log.init_](./framework/areg/resources/log.init) to set scopes, log priorities and log file name:
+Configure [_etl.cfg_](./etl.cfg) to set scopes, log priorities and log file name:
 ```
 log.file        = %home%/logs/%appname%_%time%.log # create logs in 'log' subfolder of user home 
 scope.mcrouter.*= NOTSET ;                         # disable logs for mcrouter.
