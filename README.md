@@ -160,8 +160,9 @@ In this project, some source datas will be use to do data modeling:
 
 ### Scope the Project[![](./docs/img/pin.svg)](#scope_the_project)
 
-Traditionally, devices are connected to clients to stream data to the cloud or fog servers for further processing.
-<br><br><a href="/docs/img/mist-network.png"><img src="/docs/img/mist-network.png" alt="IoT-to-Cloud (Nebula) network" style="width:70%;height:70%"/></a><br><br>
+* Scope datasources
+
+* Analysis target
 
 ---
 
