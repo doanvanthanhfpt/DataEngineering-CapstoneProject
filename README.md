@@ -97,7 +97,7 @@ To get date size, amount of records and column names with corresponding data typ
 Airport Code Table
 data size here
 number of rows here
-column names with corresponding data type
+column names with corresponding data type</br>
 ```
 
 * Splited data to avoid system stress and saving time for results:
