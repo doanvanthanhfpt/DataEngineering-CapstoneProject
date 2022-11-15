@@ -52,23 +52,23 @@ In this project, some source datas will be use to do data modeling:
 #### Data Assessment[![](./docs/img/pin.svg)](#data_volume_assessment)
 
 * Create confg file [_etl.cfg_](./etl.cfg) to set basic data path configurations:
-```
-[DIR]
-INPUT_DIR = .
-OUTPUT_DIR = ./storage
+   ```
+   [DIR]
+   INPUT_DIR = .
+   OUTPUT_DIR = ./storage
 
-[DATA]
-I94_IMMI = ../../data/18-83510-I94-Data-2016/i94_apr16_sub.sas7bdat
-WORLD_TEMPE = ../../data2/GlobalLandTemperaturesByCity.csv
-CITY_DEMOGRAPHIC = ./us-cities-demographics.csv
-AIR_PORT = ./airport-codes_csv.csv
+   [DATA]
+   I94_IMMI = ../../data/18-83510-I94-Data-2016/i94_apr16_sub.sas7bdat
+   WORLD_TEMPE = ../../data2/GlobalLandTemperaturesByCity.csv
+   CITY_DEMOGRAPHIC = ./us-cities-demographics.csv
+   AIR_PORT = ./airport-codes_csv.csv
 
-[SPLIT]
-I94_IMMI_SPLITED_DIR = ./storage/.sas7bdat
-WORLD_TEMPE_SPLITED_DIR = ./storage/.csv
-```
-> 💡 The config file can be update up to steps.<br>
-> 💡 Use comment symbols: "#" or ";".<br>
+   [SPLIT]
+   I94_IMMI_SPLITED_DIR = ./storage/.sas7bdat
+   WORLD_TEMPE_SPLITED_DIR = ./storage/.csv
+   ```
+   > 💡 The config file can be update up to steps.<br>
+   > 💡 Use comment symbols: "#" or ";".<br>
 
 * Volume asessments:<br>
    - To get date size, amount of records and column names with corresponding data type of I94 Immigration Data, run [_i94_immigration_data_gathering.py_](./i94_immigration_data_gathering.py) at terminal or Jupiter Note Book.<br>
