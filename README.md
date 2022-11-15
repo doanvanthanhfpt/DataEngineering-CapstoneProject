@@ -26,17 +26,17 @@ In this project, some source datas will be use to do data modeling:
 ## Table of contents[![](./docs/img/pin.svg)](#table-of-contents)
 1. [Step 1: Scope the Project and Gather Data](#step1)
 
-   [Data Volume Assessment][![](./docs/img/pin.svg)](#data_volume_assessment)<br>
-   [Data Attributions Assessment][![](./docs/img/pin.svg)](#data_attributions_assessment)<br>
+   [Data Volume Assessment]<br>
+   [Data Attributions Assessment]<br>
    [Scope the Project](#scope_the_project)<br>
 
-2. [Step 2: Explore and Assess the Data][![](./docs/img/pin.svg)](#step2)
+2. [Step 2: Explore and Assess the Data] (#step2)
 
-3. [Step 3: Define the Data Model][![](./docs/img/pin.svg)](#step3)
+3. [Step 3: Define the Data Model] (#step3)
 
-4. [Step 4: Run Pipelines to Model the Data][![](./docs/img/pin.svg)](#step4)
+4. [Step 4: Run Pipelines to Model the Data] (#step4)
 
-5. [Step 5: Complete Project Write Up][![](./docs/img/pin.svg)](step5)
+5. [Step 5: Complete Project Write Up] (#step5)
 
 ---
 
