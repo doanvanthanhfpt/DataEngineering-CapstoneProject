@@ -13,7 +13,7 @@ In this project, some source datas will be use to do data modeling:
 
 * **Airport Code**: This is a simple table with airport codes. The source of this data is from https://datahub.io/core/airport-codes#data. It is highly recommended to use it for educational purpose only but not for commercial or any other purpose. This data is already uploaded to the workspace.
 
-* Other text files such as **I94Addr.txt**, **I94CIT_I94RES.txt**, **I94Mode.txt**, **I94Port.txt** and **I94Visa.txt** files are used to enrich immigration data for better analysis. These files are created from the **I94_SAS_Labels_Descriptions.SAS** file provided to describe each and every field in the immigration data.
+* Other text files such as **validated_i94port.txt**, **validated_i94_visa.txt**, **validated_i94_state.txt**, **validated_i94_model.txt** and **raw_i94_country.txt** files are used to enrich immigration data for better analysis. These files are created from the **I94_SAS_Labels_Descriptions.SAS** file provided to describe each and every field in the immigration data.
 
 **The project follows the follow steps**:
 * Step 1: Scope the Project and Gather Data
