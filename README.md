@@ -101,6 +101,7 @@ WORLD_TEMPE_SPLITED_DIR = ./storage/.csv
    ```
 
 * Splited data to avoid system stress and saving time for results:<br>
+
 To split I94 Immigration Data, run [_i94_immigration_data_gathering.py_](./i94_immigration_data_gathering.py) at terminal or Jupiter Note Book.
 ```
 I94 Immigration Data
@@ -131,6 +132,7 @@ Amount of (chunks)
 ```
 
 * Attribution asessments on splited datasets:<br>
+
 To get schema and column names with corresponding data type of I94 Immigration Data, run [_i94_immigration_data_gathering.py_](./i94_immigration_data_gathering.py) at terminal or Jupiter Note Book.
 ```
 I94 Immigration Data
