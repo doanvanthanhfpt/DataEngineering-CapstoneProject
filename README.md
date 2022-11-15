@@ -72,12 +72,12 @@ WORLD_TEMPE_SPLITED_DIR = ./storage/.csv
 
 * Volume asessments:<br>
    - To get date size, amount of records and column names with corresponding data type of I94 Immigration Data, run [_i94_immigration_data_gathering.py_](./i94_immigration_data_gathering.py) at terminal or Jupiter Note Book.<br>
-      ```
-      I94 Immigration Data
-      data size here
-      number of rows here
-      column names with corresponding data type
-      ```
+   ```
+   I94 Immigration Data
+   data size here
+   number of rows here
+   column names with corresponding data type
+   ```
    - To get date size, amount of records and column names with corresponding data type of World Temperature Data, run  [_world_temperature_data_gathering.py_](./world_temperature_data_gathering.py) at terminal or Jupiter Note Book.<br>
    ```
    World Temperature Data
