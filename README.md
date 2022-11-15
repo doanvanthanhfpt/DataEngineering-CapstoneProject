@@ -162,10 +162,10 @@ In this project, some source datas will be use to do data modeling:
 
 * Scope datasources
    
-   I94 Immigration Data.
-   World Temperature Data.
-   U.S. City Demographic Data.
-   Airport Code Table.
+   - I94 Immigration Data.
+   - World Temperature Data.
+   - U.S. City Demographic Data.
+   - Airport Code Table.
    
 * Analysis target
 
