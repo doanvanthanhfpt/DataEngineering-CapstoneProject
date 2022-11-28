@@ -1588,7 +1588,7 @@ ident,type,name,elevation_ft,continent,iso_country,iso_region,municipality,gps_c
 25XS,small_airport,O'Brien Airpark,650.0,,US,US-TX,WAXAHACHIE,25XS,,25XS,"-96.84639739990234, 32.48649978637695",5
 25Y,small_airport,New York Mills Municipal Airport,1401.0,,US,US-MN,NEW YORK MILLS,25Y,,25Y,"-95.3375015258789, 46.502201080322266",5
 26AL,small_airport,Richardson Field,180.0,,US,US-AL,MOBILE,26AL,,26AL,"-88.27860260009766, 30.62420082092285",5
-26AR,small_airport,"Fly ""N"" K Airport",400.0,,US,US-AR,SEARCY,26AR,,26AR,"-91.807800293, 35.2154998779",5
+26AR,small_airport,"\"Fly \"\"N\"\" K Airport\"",400.0,,US,US-AR,SEARCY,26AR,,26AR,"-91.807800293, 35.2154998779",5
 26AZ,small_airport,Flying Dare's Ranch Airport,2192.0,,US,US-AZ,AGUILA,26AZ,,26AZ,"-113.2030029296875, 34.012001037597656",5
 26CA,small_airport,Boeckmann Ranch Airport,100.0,,US,US-CA,WILTON,26CA,,26CA,"-121.1719970703125, 38.42689895629883",5
 26FD,small_airport,Hennessy Airport,50.0,,US,US-FL,ARCADIA,26FD,,26FD,"-81.84809875488281, 27.05120086669922",5
@@ -12412,7 +12412,7 @@ PAAK,small_airport,Atka Airport,57.0,,US,US-AK,ATKA,PAAK,AKB,AKA,"-174.2059937, 
 PAAL,small_airport,Port Moller Airport,20.0,,US,US-AK,COLD BAY,PAAL,PML,1AK3,"-160.561004639, 56.0060005188",5
 PAAM,small_airport,Driftwood Bay Air Force Station Airport,24.0,,US,US-AK,DUTCH HARBOR,PAAM,,AK23,"-166.858459473, 53.9729499817",5
 PAAN,small_airport,Gold King Creek Airport,1720.0,,US,US-AK,FAIRBANKS,PAAN,,AK7,"-147.92799377441406, 64.1989974975586",5
-PAAQ,medium_airport,"Warren ""Bud"" Woods Palmer Municipal Airport",242.0,,US,US-AK,PALMER,PAAQ,PAQ,PAQ,"-149.08901, 61.594898",5
+PAAQ,medium_airport,"\"Warren \"\"Bud\"\" Woods Palmer Municipal Airport\"",242.0,,US,US-AK,PALMER,PAAQ,PAQ,PAQ,"-149.08901, 61.594898",5
 PABA,medium_airport,Barter Island LRRS Airport,2.0,,US,US-AK,BARTER ISLAND LRRS,PABA,BTI,BTI,"-143.582000732, 70.1340026855",5
 PABE,medium_airport,Bethel Airport,126.0,,US,US-AK,BETHEL,PABE,BET,BET,"-161.8379974, 60.77980042",5
 PABG,small_airport,Beluga Airport,130.0,,US,US-AK,BELUGA,PABG,BVU,BLG,"-151.044006348, 61.1721992493",5
@@ -14386,7 +14386,7 @@ XA08,small_airport,Los Cuernos Ranch Airport,340.0,,US,US-TX,COTULLA,XA08,,XA08,
 XA09,small_airport,Menard Airport,1055.0,,US,US-TX,BELLEVUE,XA09,,XA09,"-98.06109619140625, 33.58190155029297",5
 XA10,small_airport,Ponderosa Field,840.0,,US,US-TX,PONDER,XA10,,XA10,"-97.33879852294922, 33.23189926147461",5
 XA12,small_airport,Mcfarlin Ranch Airport,1200.0,,US,US-TX,BERTRAM,XA12,,XA12,"-98.03279876708984, 30.694700241088867",5
-XA15,small_airport,"Holict ""Private"" Airport",425.0,,US,US-TX,RIESEL,XA15,,XA15,"-96.9796981812, 31.426900863599997",5
+XA15,small_airport,"\"Holict \"\"Private\"\" Airport\"",425.0,,US,US-TX,RIESEL,XA15,,XA15,"-96.9796981812, 31.426900863599997",5
 XA16,small_airport,Tightwaad Air Ranch Airport,875.0,,US,US-TX,ROSSTON,XA16,,XA16,"-97.4655990600586, 33.49420166015625",5
 XA17,small_airport,Chuckster Airport,475.0,,US,US-TX,TIRA,XA17,,XA17,"-95.5635986328125, 33.32170104980469",5
 XA23,small_airport,Richardson Field,415.0,,US,US-TX,PITTSBURG,XA23,,XA23,"-94.97229767, 33.01779938",5
