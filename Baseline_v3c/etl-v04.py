@@ -192,7 +192,7 @@ def rmdir(directory):
     directory.rmdir()
 
 # Defines procedure count data files - Done
-def getListOfFiles(dir_name):
+def get_list_of_files(dir_name):
     # create a list of file and sub directories 
     # names in the given directory 
     listOfFile = os.listdir(dir_name)
@@ -203,7 +203,7 @@ def getListOfFiles(dir_name):
         fullPath = os.path.join(dir_name, entry)
         # If entry is a directory then get the list of files in this directory 
         if os.path.isdir(fullPath):
-            allFiles = allFiles + getListOfFiles(fullPath)
+            allFiles = allFiles + get_list_of_files(fullPath)
         else:
             allFiles.append(fullPath)
                 
@@ -254,7 +254,7 @@ def describe_gather_dataset(spark):
 
     return None
 
-def i94immi_dataset_handling(spark, input_dataset, parquet_outputs):
+def i94immi_dataset_handling(spark, input_dataset, output_dir):
     """
     Process I94 Immigration dataset (from './sas_data').
     
@@ -282,7 +282,7 @@ def i94immi_dataset_handling(spark, input_dataset, parquet_outputs):
 
     # Cleaning and staging I94 Immigration dataset
     print("Transforming I94 Immigration dataset:")
-    i94immi_df.createOrReplaceTempView("i94immi_table")
+    i94immi_df.createOrReplaceTempView('i94immi_table')
 
     # Drop amount of un-makesance records cause by `DepartureDate >= ArrivalDate`
     spark.sql("""
@@ -403,7 +403,8 @@ def i94immi_dataset_handling(spark, input_dataset, parquet_outputs):
     
     # 'fact_i94immi'
     # Transform to Spark SQL TempView
-    i94immi_df.createOrReplaceTempView('fact_i94immi')
+    fact_i94immi_df = i94immi_df
+    fact_i94immi_df.createOrReplaceTempView('fact_i94immi')
     
     # Create fact table fact_i94immi
     fact_i94immi = spark.sql("""
@@ -429,19 +430,22 @@ def i94immi_dataset_handling(spark, input_dataset, parquet_outputs):
     """)
 
     # Save table to parquet files
-    fact_i94immi_parquet_outputs = parquet_outputs + '/fact_i94immi.parquet'
-    fact_i94immi.write.mode("overwrite").parquet(fact_i94immi_parquet_outputs)
+    # fact_i94immi_parquet_outputs = parquet_outputs + '/fact_i94immi.parquet'
+    fact_i94immi.write.mode("overwrite").parquet(output_dir)
 
     # fact_i94immi parquet files inventory
     print("'fact_i94immi' parquet files inventory")
-    listOfFiles = getListOfFiles(fact_i94immi_parquet_outputs)
-    for item in listOfFiles:
+    list_of_files = get_list_of_files(output_dir)
+    for item in list_of_files:
         print(item)
-    print ("Parquet files inventory finished")
+    print ("'fact_i94immi' parquet files inventory finished")
 
+    return None
+
+def visa_dataset_handling(spark, input_dataset, output_dir):
     # 'dim_visa'
     # Reuse i94immi_df dataframe to process visa_df
-    visa_df = i94immi_df
+    visa_df = spark.read.options(inferSchema="true", delimiter=",", header = "true").csv(input_dataset)
 
     # Drop duplicate by 'i94visa' and 'visatype'
     visa_df = visa_df.dropDuplicates(['i94visa', 'visatype'])
@@ -460,19 +464,22 @@ def i94immi_dataset_handling(spark, input_dataset, parquet_outputs):
         """)
 
     # Save table to parquet files
-    dim_visa_parquet_outputs = parquet_outputs + '/dim_visa.parquet'
-    dim_visa.write.mode("overwrite").parquet(dim_visa_parquet_outputs)
+    # dim_visa_parquet_outputs = parquet_outputs + '/dim_visa.parquet'
+    dim_visa.write.mode("overwrite").parquet(output_dir)
 
     # dim_visa parquet files inventory
     print("'dim_visa' parquet files inventory")
-    listOfFiles = getListOfFiles(dim_visa_parquet_outputs)
-    for item in listOfFiles:
+    list_of_files = get_list_of_files(output_dir)
+    for item in list_of_files:
         print(item)
-    print ("Parquet files inventory finished")
+    print ("'dim_visa' parquet files inventory finished")
 
+    return None
+
+def flight_dataset_handling(spark, input_dataset, output_dir):
     # 'dim_immi_flight'
     # Reuse i94immi_df dataframe to process visa_df
-    flight_df = i94immi_df
+    flight_df = spark.read.options(inferSchema="true", delimiter=",", header = "true").csv(input_dataset)
 
     # Drop duplicate by 'airline' and 'fltno'
     flight_df = flight_df.dropDuplicates(['airline', 'fltno']) 
@@ -491,19 +498,23 @@ def i94immi_dataset_handling(spark, input_dataset, parquet_outputs):
             """)
 
     # Save table to parquet files
-    dim_immi_flight_parquet_outputs = parquet_outputs + '/dim_immi_flight.parquet'
-    dim_immi_flight.write.mode("overwrite").parquet(dim_immi_flight_parquet_outputs)
+    # dim_immi_flight_parquet_outputs = parquet_outputs + '/dim_immi_flight.parquet'
+    dim_immi_flight.write.mode("overwrite").parquet(output_dir)
 
     # dim_immi_flight parquet files inventory
     print("'dim_immi_flight' parquet files inventory")
-    listOfFiles = getListOfFiles(dim_immi_flight_parquet_outputs)
-    for item in listOfFiles:
+    list_of_files = get_list_of_files(output_dir)
+    for item in list_of_files:
         print(item)
-    print ("Parquet files inventory finished")
+    print ("'dim_immi_flight' parquet files inventory finished")
 
+    return None
+
+def traveller_dataset_handling(spark, input_dataset, output_dir):
     # 'dim_immi_travaller'
     # Transform to Spark SQL TempView
-    i94immi_df.createOrReplaceTempView('dim_immi_travaller')
+    traveller_df = spark.read.options(inferSchema="true", delimiter=",", header = "true").csv(input_dataset)
+    traveller_df.createOrReplaceTempView('dim_immi_travaller')
 
     # Create dim table
     dim_immi_travaller = spark.sql("""
@@ -523,21 +534,21 @@ def i94immi_dataset_handling(spark, input_dataset, parquet_outputs):
     """)
 
     # Save table to parquet files
-    dim_immi_travaller_parquet_outputs = parquet_outputs + '/dim_immi_travaller.parquet'
-    dim_immi_travaller.write.mode("overwrite").parquet(dim_immi_travaller_parquet_outputs)
+    # dim_immi_travaller_parquet_outputs = parquet_outputs + '/dim_immi_travaller.parquet'
+    dim_immi_travaller.write.mode("overwrite").parquet(output_dir)
 
     # dim_immi_travaller parquet files inventory
     print("'dim_immi_travaller' parquet files inventory")
-    listOfFiles = getListOfFiles(dim_immi_travaller_parquet_outputs)
-    for item in listOfFiles:
+    list_of_files = get_list_of_files(output_dir)
+    for item in list_of_files:
         print(item)
-    print ("Parquet files inventory finished")
+    print ("'dim_immi_travaller' parquet files inventory finished")
 
     print("I94 Immigration ETL steps has been finished.")
 
     return None
 
-def worldtempe_dataset_handling(spark, input_dataset, parquet_outputs):
+def worldtempe_dataset_handling(spark, input_dataset, output_dir):
 # def worldtempe_dataset_handling(spark,output_name):
     """
     Process World Temperature dataset (from '../../data2/GlobalLandTemperaturesByCity.csv').
@@ -656,15 +667,15 @@ def worldtempe_dataset_handling(spark, input_dataset, parquet_outputs):
     """)
 
     # Save table to parquet files
-    fact_worldtempe_parquet_outputs = parquet_outputs + '/fact_worldtempe.parquet'
-    fact_worldtempe.write.mode("overwrite").parquet(fact_worldtempe_parquet_outputs)
+    # fact_worldtempe_parquet_outputs = parquet_outputs + '/fact_worldtempe.parquet'
+    fact_worldtempe.write.mode("overwrite").parquet(output_dir)
 
     # fact_worldtempe parquet files inventory
     print("'fact_worldtempe' parquet files inventory")
-    listOfFiles = getListOfFiles(fact_worldtempe_parquet_outputs)
-    for item in listOfFiles:
+    list_of_files = get_list_of_files(output_dir)
+    for item in list_of_files:
         print(item)
-    print ("Parquet files inventory finished")
+    print ("'fact_worldtempe' parquet files inventory finished")
 
     print("Loading World Temperature dataset to fact & dim tables:")
 
@@ -672,7 +683,7 @@ def worldtempe_dataset_handling(spark, input_dataset, parquet_outputs):
 
     return None
 
-def i94port_sas_labels_handling(spark, label_str, parquet_outputs):
+def i94port_sas_labels_handling(spark, label_str, output_dir):
     """
     Process I94PORT dataset (from 'I94_SAS_Labels_Descriptions.SAS').
     
@@ -744,12 +755,23 @@ def i94port_sas_labels_handling(spark, label_str, parquet_outputs):
         FROM dim_i94port
     """)
 
-    dim_i94port_parquet_outputs = parquet_outputs + '/dim_i94port.parquet'
-    dim_i94port.write.mode("overwrite").parquet(dim_i94port_parquet_outputs)
+    # dim_i94port_parquet_outputs = parquet_outputs + '/dim_i94port.parquet'
+    dim_i94port.write.mode("overwrite").parquet(output_dir)
+
+    # dim_i94port parquet files inventory
+    print("'dim_i94port' parquet files inventory")
+    list_of_files = get_list_of_files(output_dir)
+    for item in list_of_files:
+        print(item)
+    print ("'dim_i94port' parquet files inventory finished")
+
+    print("Loading I94PORT dataset to fact & dim tables:")
+
+    print("I94PORT ETL steps has been finished.")
 
     return None
 
-def i94addr_sas_labels_handling(spark, label_str, parquet_outputs):
+def i94addr_sas_labels_handling(spark, label_str, output_dir):
     """
     Process I94ADDR dataset (from 'I94_SAS_Labels_Descriptions.SAS').
     
@@ -805,8 +827,19 @@ def i94addr_sas_labels_handling(spark, label_str, parquet_outputs):
         FROM dim_i94addr
     """)
 
-    dim_i94addr_parquet_outputs = parquet_outputs + '/dim_i94addr.parquet'
-    dim_i94addr.write.mode("overwrite").parquet(dim_i94addr_parquet_outputs)
+    # dim_i94addr_parquet_outputs = parquet_outputs + '/dim_i94addr.parquet'
+    dim_i94addr.write.mode("overwrite").parquet(output_dir)
+
+    # dim_i94addr parquet files inventory
+    print("'dim_i94addr' parquet files inventory")
+    list_of_files = get_list_of_files(output_dir)
+    for item in list_of_files:
+        print(item)
+    print ("'dim_i94addr' parquet files inventory finished")
+
+    print("Loading I94ADDR dataset to fact & dim tables:")
+
+    print("I94ADDR ETL steps has been finished.")
 
     return None
 
@@ -816,31 +849,47 @@ def quality_checks():
 
 def main():
 
-    # Dir definitions
-    parquet_outputs = './ws_parquet_outputs'
-
     # Define Spark session initilization
     spark = spark_session_init()
 
-    # Explore and garther information - done
-    describe_gather_dataset(spark)
-
-    # Dataset definitions
-    i94immi_dataset = 'sas_data'
-    worldtempe_dataset = '../../data2/GlobalLandTemperaturesByCity.csv'
+    # Input Dataset definitions
+    i94immi_raw_dataset = 'sas_data'
+    i94immi_input_dataset = i94immi_cleaned_dataset
+    visa_input_dataset = i94immi_cleaned_dataset
+    flight_input_dataset = i94immi_cleaned_dataset
+    traveller_input_dataset = i94immi_cleaned_dataset
+    worldtempe_input_dataset = '../../data2/GlobalLandTemperaturesByCity.csv'
     sas_i94port_label = 'I94PORT' # label name from 'I94_SAS_Labels_Descriptions.SAS'
     sas_i94addr_label = 'I94ADDR' # label name from 'I94_SAS_Labels_Descriptions.SAS'
 
+    # Output Dir definitions
+    i94immi_cleaned_dataset = "i94immi_df_clean"
+    parquet_outputs = './ws_parquet_outputs'
+    dim_i94addr_dir = './ws_parquet_outputs/dim_i94addr.parquet'
+    dim_i94port_dir = './ws_parquet_outputs/dim_i94port.parquet'
+    dim_immi_flight_dir = './ws_parquet_outputs/dim_immi_flight.parquet'
+    dim_immi_travaller_dir = './ws_parquet_outputs/dim_immi_travaller.parquet'
+    dim_visa_dir = './ws_parquet_outputs/dim_visa.parquet'
+    fact_i94immi_dir = './ws_parquet_outputs/fact_i94immi.parquet'
+    fact_worldtempe_dir = './ws_parquet_outputs/fact_worldtempe.parquet'
+
+    # Explore and garther information - done
+    describe_gather_dataset(spark)
+    i94immi_dataset_cleaning(spark, i94immi_raw_dataset, i94immi_cleaned_dataset)
+
     # ETL processes - done
-    i94immi_dataset_handling(spark, i94immi_dataset, parquet_outputs)
-    worldtempe_dataset_handling(spark, worldtempe_dataset, parquet_outputs)
-    i94port_sas_labels_handling(spark, sas_i94port_label, parquet_outputs)
-    i94addr_sas_labels_handling(spark, sas_i94addr_label, parquet_outputs)
+    i94immi_dataset_handling(spark, i94immi_input_dataset, fact_i94immi_dir)
+    visa_dataset_handling(spark,visa_input_dataset,dim_visa_dir)
+    flight_dataset_handling(spark,flight_input_dataset,dim_immi_flight_dir)
+    traveller_dataset_handling(spark,traveller_input_dataset,dim_immi_travaller_dir)
+    worldtempe_dataset_handling(spark, worldtempe_input_dataset, fact_worldtempe_dir)
+    i94port_sas_labels_handling(spark, sas_i94port_label, dim_i94port_dir)
+    i94addr_sas_labels_handling(spark, sas_i94addr_label, dim_i94addr_dir)
 
     # All output parquet parts and files inventory - Done
     print("All parquet parts and files inventory")
-    listOfFiles = getListOfFiles(parquet_outputs)
-    for item in listOfFiles:
+    list_of_files = get_list_of_files(parquet_outputs)
+    for item in list_of_files:
         print(item)
     print ("All parquet parts and files inventory finished")
 

@@ -192,7 +192,7 @@ def rmdir(directory):
     directory.rmdir()
 
 # Defines procedure count data files - Done
-def getListOfFiles(dir_name):
+def get_list_of_files(dir_name):
     # create a list of file and sub directories 
     # names in the given directory 
     listOfFile = os.listdir(dir_name)
@@ -203,7 +203,7 @@ def getListOfFiles(dir_name):
         fullPath = os.path.join(dir_name, entry)
         # If entry is a directory then get the list of files in this directory 
         if os.path.isdir(fullPath):
-            allFiles = allFiles + getListOfFiles(fullPath)
+            allFiles = allFiles + get_list_of_files(fullPath)
         else:
             allFiles.append(fullPath)
                 
@@ -282,7 +282,7 @@ def i94immi_dataset_handling(spark, input_dataset, parquet_outputs):
 
     # Cleaning and staging I94 Immigration dataset
     print("Transforming I94 Immigration dataset:")
-    i94immi_df.createOrReplaceTempView("i94immi_table")
+    i94immi_df.createOrReplaceTempView('i94immi_table')
 
     # Drop amount of un-makesance records cause by `DepartureDate >= ArrivalDate`
     spark.sql("""
@@ -403,7 +403,8 @@ def i94immi_dataset_handling(spark, input_dataset, parquet_outputs):
     
     # 'fact_i94immi'
     # Transform to Spark SQL TempView
-    i94immi_df.createOrReplaceTempView('fact_i94immi')
+    fact_i94immi = i94immi_df
+    fact_i94immi.createOrReplaceTempView('fact_i94immi')
     
     # Create fact table fact_i94immi
     fact_i94immi = spark.sql("""
@@ -434,8 +435,8 @@ def i94immi_dataset_handling(spark, input_dataset, parquet_outputs):
 
     # fact_i94immi parquet files inventory
     print("'fact_i94immi' parquet files inventory")
-    listOfFiles = getListOfFiles(fact_i94immi_parquet_outputs)
-    for item in listOfFiles:
+    list_of_files = get_list_of_files(fact_i94immi_parquet_outputs)
+    for item in list_of_files:
         print(item)
     print ("Parquet files inventory finished")
 
@@ -465,8 +466,8 @@ def i94immi_dataset_handling(spark, input_dataset, parquet_outputs):
 
     # dim_visa parquet files inventory
     print("'dim_visa' parquet files inventory")
-    listOfFiles = getListOfFiles(dim_visa_parquet_outputs)
-    for item in listOfFiles:
+    list_of_files = get_list_of_files(dim_visa_parquet_outputs)
+    for item in list_of_files:
         print(item)
     print ("Parquet files inventory finished")
 
@@ -496,8 +497,8 @@ def i94immi_dataset_handling(spark, input_dataset, parquet_outputs):
 
     # dim_immi_flight parquet files inventory
     print("'dim_immi_flight' parquet files inventory")
-    listOfFiles = getListOfFiles(dim_immi_flight_parquet_outputs)
-    for item in listOfFiles:
+    list_of_files = get_list_of_files(dim_immi_flight_parquet_outputs)
+    for item in list_of_files:
         print(item)
     print ("Parquet files inventory finished")
 
@@ -528,8 +529,8 @@ def i94immi_dataset_handling(spark, input_dataset, parquet_outputs):
 
     # dim_immi_travaller parquet files inventory
     print("'dim_immi_travaller' parquet files inventory")
-    listOfFiles = getListOfFiles(dim_immi_travaller_parquet_outputs)
-    for item in listOfFiles:
+    list_of_files = get_list_of_files(dim_immi_travaller_parquet_outputs)
+    for item in list_of_files:
         print(item)
     print ("Parquet files inventory finished")
 
@@ -661,8 +662,8 @@ def worldtempe_dataset_handling(spark, input_dataset, parquet_outputs):
 
     # fact_worldtempe parquet files inventory
     print("'fact_worldtempe' parquet files inventory")
-    listOfFiles = getListOfFiles(fact_worldtempe_parquet_outputs)
-    for item in listOfFiles:
+    list_of_files = get_list_of_files(fact_worldtempe_parquet_outputs)
+    for item in list_of_files:
         print(item)
     print ("Parquet files inventory finished")
 
@@ -839,8 +840,8 @@ def main():
 
     # All output parquet parts and files inventory - Done
     print("All parquet parts and files inventory")
-    listOfFiles = getListOfFiles(parquet_outputs)
-    for item in listOfFiles:
+    list_of_files = get_list_of_files(parquet_outputs)
+    for item in list_of_files:
         print(item)
     print ("All parquet parts and files inventory finished")
 
