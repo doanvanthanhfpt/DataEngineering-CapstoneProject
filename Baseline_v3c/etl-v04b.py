@@ -487,7 +487,7 @@ def visa_dataset_handling(spark, input_dataset, output_dir):
             i94visa as visatype_by_number,
             visatype as visatype_by_code,
             visa_type as visa_category
-        FROM fact_i94immi
+        FROM dim_visa
         """)
 
     # Save table to parquet files
@@ -844,6 +844,7 @@ def i94port_sas_labels_handling(spark, label_str, output_dir):
     list_of_files = get_list_of_files(output_dir)
     for item in list_of_files:
         print(item)
+    
     print ("'dim_i94port' parquet files inventory finished")
 
     print("Loading I94PORT dataset to fact & dim tables:")
