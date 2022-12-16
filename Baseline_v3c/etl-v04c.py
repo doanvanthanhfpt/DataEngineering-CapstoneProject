@@ -447,7 +447,7 @@ def i94immi_dataset_handling(spark, input_dataset, output_dir):
 
 def visa_dataset_cleaning(spark, input_dataset, output_dir):
     # Extract visa dataset from 'i94immi_raw_dataset'
-    print("Extracting visa dataset (from 'i94immi_cleaned_dataset').")
+    print("Extracting visa dataset from 'i94immi_cleaned_dataset'.")
     visa_df = spark.read.options(inferSchema="true", delimiter=",", header = "true").csv(input_dataset)
 
     # Keep columns of visa
@@ -505,8 +505,8 @@ def visa_dataset_handling(spark, input_dataset, output_dir):
     return None
 
 def flight_dataset_cleaning(spark, input_dataset, output_dir):
-    # Extract visa dataset from 'i94immi_raw_dataset'
-    print("Extracting visa dataset (from 'i94immi_cleaned_dataset').")
+    # Extract flight dataset from 'i94immi_raw_dataset'
+    print("Extracting visa dataset from 'i94immi_cleaned_dataset'.")
     flight_df = spark.read.options(inferSchema="true", delimiter=",", header = "true").csv(input_dataset)
 
     # Keep columns of visa

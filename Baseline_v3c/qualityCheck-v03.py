@@ -37,15 +37,16 @@ def spark_session_init():
             .enableHiveSupport().getOrCreate()
     return spark
 
-def quality_check(total_rows,count_rows_by_pk):
-    if total_rows == count_rows_by_pk:
-        true_or_false = True
-        print("Data quality check: {}".format(true_or_false))
+def quality_check_primarykey(spark, parquet_part, select_columns, table_name):
+    df = spark.read.parquet(parquet_part)
+    if df.count() > df.dropDuplicates(select_columns).count():
+        raise ValueError('>>> Key has duplicates for {}!!'.format(table_name))
     else:
-        true_or_false = False
-        print("Data quality check: {}".format(true_or_false))
+        print(">>> Unique key check succes for {}.".format(table_name))
     
-    return true_or_false
+    return None
+
+
 
 def check_dim_i94addr(spark):
     
@@ -53,29 +54,16 @@ def check_dim_i94addr(spark):
     
     # Load table parquet files to dataframe
     dim_i94addr_dir = './ws_parquet_outputs/dim_i94addr.parquet'
-    dim_i94addr_df = spark.read.parquet(dim_i94addr_dir)
-
-    # Check row samples
-    print("Row samples: ")
-    dim_i94addr_df.show(5)
-
-    # Check datatype
-    print("Data types: {}".format(dim_i94addr_df.dtypes))
-
-    # Check data row volume
-    print("Amount of total rows: {}".format(dim_i94addr_df.count()))
-
-    # Check distinct value by key
     key = ['immi_state_code']
-    print("Amount of distinc rows by key: {}".format(dim_i94addr_df.select(key).distinct().count()))
-    
-    total_rows = dim_i94addr_df.count()
-    count_rows_by_pk = dim_i94addr_df.select(key).distinct().count()
-    quality_check(total_rows,count_rows_by_pk)
+
+    quality_check_primarykey(spark, dim_i94addr_dir, key, "dim_i94addr")
 
     print("   dim_i94addr table has been checked    ")
 
     return None
+
+
+
 
 def check_dim_i94port(spark):
 
@@ -83,29 +71,15 @@ def check_dim_i94port(spark):
 
     # Load table parquet files to dataframe
     dim_i94port_dir = './ws_parquet_outputs/dim_i94port.parquet'
-    dim_i94port_df = spark.read.parquet(dim_i94port_dir)
-
-    # Check row samples
-    print("Row samples: ")
-    dim_i94port_df.show(5)
-
-    # Check datatype
-    print("Data types: {}".format(dim_i94port_df.dtypes))
-
-    # Check data row volume
-    print("Amount of total rows: {}".format(dim_i94port_df.count()))
-
-    # Check distinct value by key
     key = ['immi_port_code']
-    print("Amount of distinc rows by key: {}".format(dim_i94port_df.select(key).distinct().count()))
 
-    total_rows = dim_i94port_df.count()
-    count_rows_by_pk = dim_i94port_df.select(key).distinct().count()
-    quality_check(total_rows,count_rows_by_pk)
+    quality_check_primarykey(spark, dim_i94port_dir, key, "dim_i94port")
     
     print("=== dim_i94port table has been checked ===")
 
     return None
+
+
 
 def check_dim_immi_flight(spark):
 
@@ -113,29 +87,15 @@ def check_dim_immi_flight(spark):
 
     # Load table parquet files to dataframe
     dim_immi_flight_dir = './ws_parquet_outputs/dim_immi_flight.parquet'
-    dim_immi_flight_df = spark.read.parquet(dim_immi_flight_dir)
-
-    # Check row samples
-    print("Row samples: ")
-    dim_immi_flight_df.show(5)
-
-    # Check datatype
-    print("Data types: {}".format(dim_immi_flight_df.dtypes))
-
-    # Check data row volume
-    print("Amount of total rows: {}".format(dim_immi_flight_df.count()))
-
-    # Check distinct value by key
     key = ['flight_number']
-    print("Amount of distinc rows by key: {}".format(dim_immi_flight_df.select(key).distinct().count()))
 
-    total_rows = dim_immi_flight_df.count()
-    count_rows_by_pk = dim_immi_flight_df.select(key).distinct().count()
-    quality_check(total_rows,count_rows_by_pk)
-
+    quality_check_primarykey(spark, dim_immi_flight_dir, key, "dim_immi_flight")
+    
     print("=== dim_immi_flight table has been checked ===")
 
-    return dim_immi_flight_df
+    return None
+
+
 
 def check_dim_immi_travaller(spark):
 
@@ -143,29 +103,15 @@ def check_dim_immi_travaller(spark):
 
     # Load table parquet files to dataframe
     dim_immi_travaller_dir = './ws_parquet_outputs/dim_immi_travaller.parquet'
-    dim_immi_travaller_df = spark.read.parquet(dim_immi_travaller_dir)
-
-    # Check row samples
-    print("Row samples: ")
-    dim_immi_travaller_df.show(5)
-
-    # Check datatype
-    print("Data types: {}".format(dim_immi_travaller_df.dtypes))
-
-    # Check data row volume
-    print("Amount of total rows: {}".format(dim_immi_travaller_df.count()))
-
-    # Check distinct value by key
     key = ['traveller_cicid']
-    print("Amount of distinc rows by key: {}".format(dim_immi_travaller_df.select(key).distinct().count()))
 
-    total_rows = dim_immi_travaller_df.count()
-    count_rows_by_pk = dim_immi_travaller_df.select(key).distinct().count()
-    quality_check(total_rows,count_rows_by_pk)
+    quality_check_primarykey(spark, dim_immi_travaller_dir, key, "dim_immi_travaller")
 
     print("=== dim_immi_travaller table has been checked ===")
 
     return None
+
+
 
 def check_dim_visa(spark):
 
@@ -173,29 +119,15 @@ def check_dim_visa(spark):
 
     # Load table parquet files to dataframe
     dim_visa_dir = './ws_parquet_outputs/dim_visa.parquet'
-    dim_visa_df = spark.read.parquet(dim_visa_dir)
-
-    # Check row samples
-    print("Row samples: ")
-    dim_visa_df.show(5)
-
-    # Check datatype
-    print("Data types: {}".format(dim_visa_df.dtypes))
-
-    # Check data row volume
-    print("Amount of total rows: {}".format(dim_visa_df.count()))
-
-    # Check distinct value by key
     key = ['visatype_by_code']
-    print("Amount of distinc rows by key: {}".format(dim_visa_df.select(key).distinct().count()))
 
-    total_rows = dim_visa_df.count()
-    count_rows_by_pk = dim_visa_df.select(key).distinct().count()
-    quality_check(total_rows,count_rows_by_pk)
-    
+    quality_check_primarykey(spark, dim_visa_dir, key, "dim_visa")
+
     print("=== dim_visa table has been checked ===")
 
     return None
+
+
 
 def check_fact_i94immi(spark):
 
@@ -203,29 +135,14 @@ def check_fact_i94immi(spark):
 
     # Load table parquet files to dataframe
     fact_i94immi_dir = './ws_parquet_outputs/fact_i94immi.parquet'
-    fact_i94immi_df = spark.read.parquet(fact_i94immi_dir)
-
-    # Check row samples
-    print("Row samples: ")
-    fact_i94immi_df.show(5)
-
-    # Check datatype
-    print("Data types: {}".format(fact_i94immi_df.dtypes))
-
-    # Check data row volume
-    print("Amount of total rows: {}".format(fact_i94immi_df.count()))
-
-    # Check distinct value by key
     key = ['travel_cicid']
-    print("Amount of distinc rows by key: {}".format(fact_i94immi_df.select(key).distinct().count()))
 
-    total_rows = fact_i94immi_df.count()
-    count_rows_by_pk = fact_i94immi_df.select(key).distinct().count()
-    quality_check(total_rows,count_rows_by_pk)
+    quality_check_primarykey(spark, fact_i94immi_dir, key, "fact_i94immi")
 
     print("=== fact_i94immi table has been checked ===")
 
     return None
+
 
 def check_fact_worldtempe(spark):
 
@@ -233,29 +150,13 @@ def check_fact_worldtempe(spark):
 
     # Load table parquet files to dataframe
     fact_worldtempe_dir = './ws_parquet_outputs/fact_worldtempe.parquet'
-    fact_worldtempe_df = spark.read.parquet(fact_worldtempe_dir)
-
-    # Check row samples
-    print("Row samples: ")
-    fact_worldtempe_df.show(5)
-
-    # Check datatype
-    print("Data types: {}".format(fact_worldtempe_df.dtypes))
-
-    # Check data row volume
-    print("Amount of total rows: {}".format(fact_worldtempe_df.count()))
-
-    # Check distinct value by key
     key = ['measure_city', 'measure_date']
-    print("Amount of distinc rows by key: {}".format(fact_worldtempe_df.select(key).distinct().count()))
 
-    total_rows = fact_worldtempe_df.count()
-    count_rows_by_pk = fact_worldtempe_df.select(key).distinct().count()
-    quality_check(total_rows,count_rows_by_pk)
+    quality_check_primarykey(spark, fact_worldtempe_dir, key, "fact_worldtempe")
     
     print("=== fact_worldtempe table has been checked ===")
 
-    return fact_worldtempe_df
+    return None
 
 def check_airport_traffic(spark):
     # Count air flight traffic to a city
@@ -292,15 +193,15 @@ def check_airport_traffic(spark):
         """).createOrReplaceTempView('city_flight_traffic')
         
         # Show result
-        print("Total air flight traffic to city: ")
+        print("Air flight traffic to a city: ")
         spark.sql("""
             SELECT 
-                *
+                COUNT(*) as number_of_query_outputs
             FROM city_flight_traffic
-        """).show(30)
+        """).show()
 
-        print("   SQL JOIN 'dim_i94port' and 'fact_i94immi' has been tested.    ")
-        print("   Data quality of 'dim_i94port' and 'fact_i94immi' are OK.    ")
+        print("    SQL JOIN 'dim_i94port' and 'fact_i94immi' has been tested.    ")
+        print(">>> Data quality of 'dim_i94port' and 'fact_i94immi' are OK.    ")
         print("   ======================================================    ")
 
     except:
@@ -342,14 +243,15 @@ def check_immi_city(spark):
         """).createOrReplaceTempView('city_immi_volume')
 
         # Show result
-        print("Total immigration volume to a city: ")
+        print("Immigration travel volume to a city: ")
         spark.sql("""
-            SELECT *
+            SELECT 
+                COUNT(*) as number_of_query_outputs
             FROM city_immi_volume
-        """).show(30)
+        """).show()
 
-        print("   SQL JOIN 'fact_i94immi' and 'dim_i94port' has been tested.    ")
-        print("   Data quality of 'fact_i94immi' and 'dim_i94port' are OK.    ")
+        print("    SQL JOIN 'fact_i94immi' and 'dim_i94port' has been tested.    ")
+        print(">>> Data quality of 'fact_i94immi' and 'dim_i94port' are OK.    ")
         print("   ======================================================    ")
 
     except:
@@ -432,14 +334,15 @@ def check_tempe_immi_volume(spark):
         
         # View results
         print("Relation between temperature and immigration travel to a city: ")
+        # Show result
         spark.sql("""
-            SELECT *
+            SELECT 
+                COUNT(*) as number_of_query_outputs
             FROM travel_vs_temperature
-            ORDER BY temparature DESC
-        """).show(30)
+        """).show()
 
-        print("   SQL JOIN 'fact_i94immi' and 'fact_worldtempe' has been tested.    ")
-        print("   Data quality of 'fact_i94immi' and 'fact_worldtempe' are OK.    ")
+        print("    SQL JOIN 'fact_i94immi' and 'fact_worldtempe' has been tested.    ")
+        print(">>> Data quality of 'fact_i94immi' and 'fact_worldtempe' are OK.    ")
         print("   ======================================================    ")
     
     except:
@@ -465,19 +368,19 @@ def get_list_of_files(dir_name):
                 
     return allFiles
 
-def parquet_files_inventory(parquet_dir):
+def parquet_files_inventory(parquet_dir, parquet_part):
     
     try:
         # All output parquet parts and files inventory - Done
-        print("All parquet parts and files: ")
+        print("Listing parquet parts and files: ")
         list_of_files = get_list_of_files(parquet_dir)
         for item in list_of_files:
             print(item)
         
-        print ("All parquet parts and files has been created.")
+        print (">>>> All parquet parts of {} has been created.".format(parquet_part))
     
     except:
-        print("An exception occurred")
+        print(">>>>> An exception error occurred with {}.".format(parquet_part))
 
 
     return None
@@ -498,6 +401,14 @@ def main():
     fact_i94immi_dir = './ws_parquet_outputs/fact_i94immi.parquet'
     fact_worldtempe_dir = './ws_parquet_outputs/fact_worldtempe.parquet'
 
+    parquet_files_inventory(dim_i94addr_dir,'dim_i94addr')
+    parquet_files_inventory(dim_i94port_dir, 'dim_i94port')
+    parquet_files_inventory(dim_immi_flight_dir, 'dim_immi_flight')
+    parquet_files_inventory(dim_immi_travaller_dir, 'dim_immi_travaller')
+    parquet_files_inventory(dim_visa_dir, 'dim_visa')
+    parquet_files_inventory(fact_i94immi_dir, 'fact_i94immi')
+    parquet_files_inventory(fact_worldtempe_dir, 'fact_worldtempe')
+    
     # Check PRIMARY KEY
     # Check COMPOSITE KEYs includes PARTITION KEY and CLUSTERING KEY
     check_dim_i94addr(spark)
@@ -512,26 +423,6 @@ def main():
     check_immi_city(spark)
     check_tempe_immi_volume(spark)
 
-    print ("Parquet parts and files of 'dim_i94addr_dir': ")
-    parquet_files_inventory(dim_i94addr_dir)
-
-    print ("Parquet parts and files of 'dim_i94port_dir': ")
-    parquet_files_inventory(dim_i94port_dir)
-
-    print ("Parquet parts and files of 'dim_immi_flight_dir': ")
-    parquet_files_inventory(dim_immi_flight_dir)
-
-    print ("Parquet parts and files of 'dim_immi_travaller_dir': ")
-    parquet_files_inventory(dim_immi_travaller_dir)
-
-    print ("Parquet parts and files of 'dim_visa_dir': ")
-    parquet_files_inventory(dim_visa_dir)
-
-    print ("Parquet parts and files of 'fact_i94immi_dir': ")
-    parquet_files_inventory(fact_i94immi_dir)
-
-    print ("Parquet parts and files of 'fact_worldtempe_dir': ")
-    parquet_files_inventory(fact_worldtempe_dir)
 
     print ("====== QUALITY CHECK PROCESSES DONE =====")
 
